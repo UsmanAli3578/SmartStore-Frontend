@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { API_URL } from '../api/config';
 const Edit = () => {
 	const { id } = useParams();
 	function handlesubmit(e) {
@@ -17,7 +18,7 @@ const Edit = () => {
 
 		axios
 			.put(
-				`http://localhost:3000/api/product/editproduct/${id}`,
+				`${API_URL}/api/product/editproduct/${id}`,
 				formData,
 				{
 					withCredentials: true,

@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../api/config';
 
 const Registration = () => {
+	const navigate = useNavigate()
 	function handlesubmit(e) {
 		e.preventDefault();
 
@@ -16,10 +18,11 @@ const Registration = () => {
 		};
 
 		axios
-			.post('http://localhost:3000/api/auth/register', data)
+			.post(`${API_URL}/api/auth/register`, data)
 			.then((res) => {
 				console.log(res.data);
 				e.target.reset();
+				navigate('/products')
 			})
 			.catch((error) => {
 				console.log(error);

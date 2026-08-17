@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../api/config';
 const UsersProducts = () => {
 	const [render, setRender] = useState(0);
 	const navigate = useNavigate();
 	const [userProducts, setUserProducts] = useState([]);
 	function getuserproducts() {
 		axios
-			.get('http://localhost:3000/api/product/myproducts', {
+			.get(`${API_URL}/api/product/myproducts`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -18,7 +19,7 @@ const UsersProducts = () => {
 	function deleted(item) {
 		axios
 			.delete(
-				`http://localhost:3000/api/product/deleteproduct/${item.id}`,
+				`${API_URL}/api/product/deleteproduct/${item.id}`,
 				{
 					withCredentials: true,
 				},

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { use } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../api/config';
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Login = () => {
 		};
 
 		axios
-			.post('http://localhost:3000/api/auth/login', data, {
+			.post(`${API_URL}/api/auth/login`, data, {
 				withCredentials: true,
 			})
 			.then((res) => {

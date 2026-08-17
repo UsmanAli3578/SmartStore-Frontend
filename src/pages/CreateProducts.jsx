@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { API_URL } from '../api/config';
 const CreateProducts = () => {
 	function handlesubmit(e) {
 		e.preventDefault();
@@ -15,7 +16,7 @@ const CreateProducts = () => {
 
 		axios
 			.post(
-				'http://localhost:3000/api/product/productCreated',
+				`${API_URL}/api/product/productCreated`,
 				formData,
 				{
 					withCredentials: true,
