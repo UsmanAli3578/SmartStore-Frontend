@@ -6,7 +6,10 @@ import Login from './pages/Login';
 import CreateProducts from './pages/CreateProducts';
 import UsersProducts from './pages/UsersProducts';
 import Edit from './pages/Edit';
+import Cart from './pages/Cart';
 const App = () => {
+
+	
 	return (
 		<Routes>
 			<Route
@@ -32,6 +35,10 @@ const App = () => {
 			<Route
 				path="/edit/:id"
 				element={<Edit />}
+			/>
+			<Route
+				path="/cart"
+				element={<Cart />}
 			/>
 		</Routes>
 	);

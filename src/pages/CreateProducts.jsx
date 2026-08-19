@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { API_URL } from '../api/config';
+import Nav from '../components/Nav';
 const CreateProducts = () => {
 	function handlesubmit(e) {
 		e.preventDefault();
@@ -15,13 +16,9 @@ const CreateProducts = () => {
 		// };
 
 		axios
-			.post(
-				`${API_URL}/api/product/productCreated`,
-				formData,
-				{
-					withCredentials: true,
-				},
-			)
+			.post(`${API_URL}/api/product/productCreated`, formData, {
+				withCredentials: true,
+			})
 			.then((res) => {
 				console.log(res.data);
 				e.target.reset();
@@ -33,6 +30,7 @@ const CreateProducts = () => {
 
 	return (
 		<div>
+			<Nav></Nav>
 			<div>usman</div>
 			<form
 				action=""
