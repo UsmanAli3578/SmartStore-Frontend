@@ -127,7 +127,9 @@ const Registration = () => {
 		};
 
 		axios
-			.post(`${API_URL}/api/auth/register`, data)
+			.post(`${API_URL}/api/auth/register`, data, {
+				withCredentials: true,
+			})
 			.then((res) => {
 				console.log(res.data);
 				e.target.reset();
@@ -143,7 +145,7 @@ const Registration = () => {
 			<div className="bg-[#16211D] flex-3 ">
 				<div className="flex items-center gap-2 p-10">
 					<div>
-						<span class="flex bg-[#DC9C35] h-9 w-9 items-center justify-center rounded-full bg-marigold font-display text-base font-bold text-ink">
+						<span className="flex bg-[#DC9C35] h-9 w-9 items-center justify-center rounded-full bg-marigold font-display text-base font-bold text-ink">
 							S
 						</span>
 					</div>
@@ -227,7 +229,9 @@ const Registration = () => {
 					</form>
 
 					<div className="font-semibold text-sm flex gap-2  justify-center ">
-						<div className='text-[#6E7269]'>Already have an account?</div>
+						<div className="text-[#6E7269]">
+							Already have an account?
+						</div>
 						<Link
 							to="/login"
 							className="text-blue-500"
