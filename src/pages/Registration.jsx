@@ -214,7 +214,7 @@ const Registration = () => {
 						</div>
 
 						<div className=" text-sm font-semibold  ">
-							<div>Roll</div>
+							<div>Role</div>
 							<select
 								name="role"
 								className="border  py-2 rounded w-70"
