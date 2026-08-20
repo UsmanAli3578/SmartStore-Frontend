@@ -1,8 +1,26 @@
 import React from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { API_URL } from '../api/config';
 const Nav = () => {
 	const navigate = useNavigate();
+
+	function logout() {
+		axios
+			.post(
+				`${API_URL}/api/auth/logout`,
+				{},
+				{
+					withCredentials: true,
+				},
+			)
+			.then(() => {
+				navigate('/login', { replace: true });
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
 	return (
 		<div className="bg-[#16211D] p-4 px-20 flex items-center justify-between">
 			<div className="flex items-center gap-2 ">
@@ -55,6 +73,12 @@ const Nav = () => {
 						Cart
 					</button>
 				</div>
+				<button
+					onClick={logout}
+					className="text-lg text-amber-50 font-bold font-serif hover:text-red-400 cursor-pointer"
+				>
+					Logout
+				</button>
 			</div>
 		</div>
 	);

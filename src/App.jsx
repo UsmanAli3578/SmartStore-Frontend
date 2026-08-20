@@ -110,7 +110,7 @@ import CreateProducts from './pages/CreateProducts';
 import UsersProducts from './pages/UsersProducts';
 import Edit from './pages/Edit';
 import Cart from './pages/Cart';
-
+import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
 
@@ -152,6 +152,10 @@ const App = () => {
 					element={<Cart />}
 				/>
 			</Route>
+			<Route
+				path="*"
+				element={<NotFound />}
+			/>
 		</Routes>
 	);
 };
