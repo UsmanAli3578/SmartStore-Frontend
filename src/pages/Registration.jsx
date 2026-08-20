@@ -133,7 +133,7 @@ const Registration = () => {
 			.then((res) => {
 				console.log(res.data);
 				e.target.reset();
-				navigate('/products');
+				navigate('/products', { replace: true });
 			})
 			.catch((error) => {
 				console.log(error);
@@ -232,12 +232,15 @@ const Registration = () => {
 						<div className="text-[#6E7269]">
 							Already have an account?
 						</div>
-						<Link
-							to="/login"
+						<button
+							type="button"
+							onClick={() =>
+								navigate('/login', { replace: true })
+							}
 							className="text-blue-500"
 						>
 							Login
-						</Link>
+						</button>
 					</div>
 				</div>
 			</div>

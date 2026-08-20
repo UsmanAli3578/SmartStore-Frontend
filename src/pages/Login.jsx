@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../api/config';
 
 const Login = () => {
-	
 	const navigate = useNavigate();
 	function submithandler(e) {
 		e.preventDefault();
@@ -21,7 +20,7 @@ const Login = () => {
 			})
 			.then((res) => {
 				console.log(res.data);
-				navigate('/products');
+				navigate('/products', { replace: true });
 				e.target.reset();
 			})
 			.catch((error) => {
@@ -34,7 +33,7 @@ const Login = () => {
 			<div className="bg-[#16211D] flex-3 ">
 				<div className="flex items-center gap-2 p-10">
 					<div>
-						<span class="flex bg-[#DC9C35] h-9 w-9 items-center justify-center rounded-full bg-marigold font-display text-base font-bold text-ink">
+						<span className="flex bg-[#DC9C35] h-9 w-9 items-center justify-center rounded-full bg-marigold font-display text-base font-bold text-ink">
 							S
 						</span>
 					</div>
@@ -125,7 +124,7 @@ const Login = () => {
 					</form>
 
 					<div className="font-semibold text-sm flex gap-2  justify-center ">
-						<div className='text-[#6E7269]'>New to SmartStore?</div>
+						<div className="text-[#6E7269]">New to SmartStore?</div>
 						<Link
 							to="/"
 							className="text-blue-500"

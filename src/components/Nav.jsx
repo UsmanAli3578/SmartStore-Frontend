@@ -7,7 +7,7 @@ const Nav = () => {
 		<div className="bg-[#16211D] p-4 px-20 flex items-center justify-between">
 			<div className="flex items-center gap-2 ">
 				<div>
-					<span class="flex bg-[#DC9C35] h-9 w-9 items-center justify-center rounded-full bg-marigold font-display text-base font-bold text-ink">
+					<span className="flex bg-[#DC9C35] h-9 w-9 items-center justify-center rounded-full bg-marigold font-display text-base font-bold text-ink">
 						S
 					</span>
 				</div>
