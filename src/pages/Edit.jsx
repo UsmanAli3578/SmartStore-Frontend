@@ -207,6 +207,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { API_URL } from '../api/config';
+import Nav from '../components/Nav';
 
 const Edit = () => {
 	const navigate = useNavigate();
@@ -251,7 +252,7 @@ const Edit = () => {
 
 	if (!product) {
 		return (
-			<div className="min-h-screen bg-gray-50 px-4 py-10 sm:px-8">
+			<div className="min-h-screen bg-brand-dark px-4 py-10 sm:px-8">
 				<p className="mx-auto max-w-md text-gray-500">
 					Loading product...
 				</p>
@@ -260,75 +261,80 @@ const Edit = () => {
 	}
 
 	return (
-		<div className="min-h-screen bg-gray-50 px-4 py-10 sm:px-8">
-			<div className="mx-auto max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-				<h1 className="mb-6 text-2xl font-bold text-gray-800">
-					Edit Product
-				</h1>
+		<div>
+			<Nav></Nav>
+			<div className="min-h-screen bg-brand-dark px-4 py-10 sm:px-8 font-['Zilla_Slab']">
+				<div className="mx-auto max-w-4xl rounded-2xl border border-brand-border bg-brand-card p-6 shadow-sm">
+					<h1 className="mb-6 text-2xl font-bold text-brand-text">
+						Edit Product
+					</h1>
 
-				<form
-					onSubmit={handlesubmit}
-					className="space-y-4"
-				>
-					<div>
-						<label className="mb-1 block text-sm font-medium text-gray-700">
-							name
-						</label>
-						<input
-							type="text"
-							name="name"
-							defaultValue={product.name}
-							className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-gray-500 focus:outline-none"
-						/>
-					</div>
+					<form
+						onSubmit={handlesubmit}
+						className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+					>
+						<div className="lg:col-span-2 space-y-4">
+							<div>
+								<label className="mb-1 block text-sm font-medium text-brand-text">
+									name
+								</label>
+								<input
+									type="text"
+									name="name"
+									defaultValue={product.name}
+									className="w-full rounded-lg border border-brand-border bg-brand-dark text-brand-text px-3 py-2 focus:border-brand-primary focus:outline-none"
+								/>
+							</div>
 
-					<div>
-						<label className="mb-1 block text-sm font-medium text-gray-700">
-							description
-						</label>
-						<input
-							type="text"
-							name="description"
-							defaultValue={product.description}
-							className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-gray-500 focus:outline-none"
-						/>
-					</div>
+							<div>
+								<label className="mb-1 block text-sm font-medium text-brand-text">
+									description
+								</label>
+								<input
+									type="text"
+									name="description"
+									defaultValue={product.description}
+									className="w-full rounded-lg border border-brand-border bg-brand-dark text-brand-text px-3 py-2 focus:border-brand-primary focus:outline-none"
+								/>
+							</div>
 
-					<div>
-						<label className="mb-1 block text-sm font-medium text-gray-700">
-							price
-						</label>
-						<input
-							type="number"
-							name="price"
-							defaultValue={product.price}
-							className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-gray-500 focus:outline-none"
-						/>
-					</div>
+							<div>
+								<label className="mb-1 block text-sm font-medium text-brand-text">
+									price
+								</label>
+								<input
+									type="number"
+									name="price"
+									defaultValue={product.price}
+									className="w-full rounded-lg border border-brand-border bg-brand-dark text-brand-text px-3 py-2 focus:border-brand-primary focus:outline-none"
+								/>
+							</div>
+						</div>
 
-					<div>
-						<label className="mb-1 block text-sm font-medium text-gray-700">
-							current photo
-						</label>
-						<img
-							src={product.image}
-							alt={product.name}
-							className="mb-2 h-24 w-24 rounded-lg object-cover"
-						/>
-						<input
-							type="file"
-							name="image"
-							className="w-full text-sm text-gray-600"
-						/>
-						<p className="mt-1 text-xs text-gray-400">
-							Leave empty to keep the current photo.
-						</p>
-					</div>
+						<div className="lg:col-span-1">
+							<label className="mb-1 block text-sm font-medium text-brand-text">
+								current photo
+							</label>
+							<img
+								src={product.image}
+								alt={product.name}
+								className="mb-2 h-24 w-24 rounded-lg object-cover"
+							/>
+							<input
+								type="file"
+								name="image"
+								className="w-full text-sm text-brand-muted"
+							/>
+							<p className="mt-1 text-xs text-brand-muted">
+								Leave empty to keep the current photo.
+							</p>
+						</div>
 
-					<button className="w-full rounded-lg bg-gray-800 py-2 font-medium text-white hover:bg-gray-900">
-						submit
-					</button>
-				</form>
+						<button className="w-full rounded-lg bg-brand-primary py-2 font-semibold text-brand-text-dark hover:bg-brand-hover">
+							submit
+						</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../api/config';
 import Nav from '../components/Nav';
+import ProductCard from '../components/ProductCard';
 const Products = () => {
 	const [allProducts, setAllProducts] = useState([]);
 
@@ -44,7 +45,7 @@ const Products = () => {
 				})}
 			</div> */}
 
-			<div className="grid grid-cols-3 gap-2 p-2">
+			{/* <div className="grid grid-cols-3 gap-2 p-2">
 				{allProducts.map((item) => {
 					return (
 						<div
@@ -66,15 +67,7 @@ const Products = () => {
 								<span className="font-semibold">Price: </span>
 								{item.price}
 							</div>
-							{/* <div>
-								<button
-									onClick={() => {
-										addtocart(item);
-									}}
-								>
-									addtocart
-								</button>
-							</div> */}
+
 							<div>
 								<button
 									onClick={() => {
@@ -86,6 +79,18 @@ const Products = () => {
 								</button>
 							</div>
 						</div>
+					);
+				})}
+			</div> */}
+
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+				{allProducts.map((item) => {
+					return (
+						<ProductCard
+							item={item}
+							addtocart={addtocart}
+							key={item._id || item.id}
+						/>
 					);
 				})}
 			</div>

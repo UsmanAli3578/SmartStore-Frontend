@@ -106,11 +106,11 @@
 // };
 
 // export default Registration;
-
 import React from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../api/config';
+import { tenantConfig } from '../config/tenantConfig';
 
 const Registration = () => {
 	const navigate = useNavigate();
@@ -141,25 +141,25 @@ const Registration = () => {
 	}
 
 	return (
-		<div className=" min-h-screen flex w-full ">
-			<div className="bg-[#16211D] flex-3 ">
+		<div className="min-h-screen flex flex-col lg:flex-row w-full">
+			<div className="bg-brand-dark flex-3">
 				<div className="flex items-center gap-2 p-10">
 					<div>
-						<span className="flex bg-[#DC9C35] h-9 w-9 items-center justify-center rounded-full bg-marigold font-display text-base font-bold text-ink">
+						<span className="flex bg-brand-primary h-9 w-9 items-center justify-center rounded-full font-display text-base font-bold">
 							S
 						</span>
 					</div>
-					<div className='font-bold text-2xl text-amber-50 font-["Zilla_Slab"]'>
-						Smart<span className="text-[#DC9C35]">Store</span>
+					<div className='font-bold text-2xl text-brand-text font-["Zilla_Slab"]'>
+						{tenantConfig.brandName}
 					</div>
 				</div>
-				<div className="p-10 text-amber-50 mt-20 ">
-					<div className="text-[#DC9C35] tracking-wider">
+				<div className="p-6 sm:p-10 text-brand-text mt-6 lg:mt-20">
+					<div className="text-brand-primary tracking-wider">
 						Peer-To-Peer Marketplace
 					</div>
 					<div className='font-["Zilla_Slab"] text-4xl mt-4'>
 						List it, tag it,{' '}
-						<span className="text-[#DC9C35]">sell it.</span>
+						<span className="text-brand-primary">sell it.</span>
 					</div>
 					<div className="leading-6 mt-4 text-[#9CA598]">
 						One account, two ways to use it — shop what your
@@ -168,67 +168,64 @@ const Registration = () => {
 					</div>
 				</div>
 			</div>
-			<div className=" flex items-center justify-center flex-4 bg-[#F2ECDB]">
-				<div className="border border-[#b5adad] p-20 bg-[#E9E1CA] rounded-2xl ">
+
+			<div className="flex items-center justify-center flex-4 bg-[#F2ECDB] py-10">
+				<div className="w-full max-w-md lg:max-w-lg border border-[#b5adad] p-6 sm:p-12 lg:p-20 bg-[#E9E1CA] rounded-2xl mx-4">
 					<div className="mb-5">
-						<div className=" tracking-widest text-green-800 ">
+						<div className="tracking-widest text-green-800">
 							GET STARTED
 						</div>
-						<div className="font-semibold  text-2xl">
+						<div className="font-semibold text-2xl text-brand-text-dark">
 							Open your account
 						</div>
 						<div className="text-sm text-[#79776B] mt-2">
 							It takes less than a minute.
 						</div>
 					</div>
-					<form
-						action=""
-						onSubmit={handlesubmit}
-					>
-						<div className=" text-sm font-semibold ">
-							<div>FullName</div>
+					<form onSubmit={handlesubmit}>
+						<div className="text-sm font-semibold text-brand-text-dark mb-4">
+							<div className="mb-1">FullName</div>
 							<input
 								type="text"
 								name="name"
-								id=""
-								className="border outline-0 px-1 py-2 rounded w-70"
+								placeholder="Enter your full name"
+								className="border border-brand-border outline-0 px-4 py-3 rounded-xl w-full text-brand-text-dark bg-white"
 							/>
 						</div>
-						<div className=" text-sm font-semibold ">
-							<div>Email</div>
+						<div className="text-sm font-semibold text-brand-text-dark mb-4">
+							<div className="mb-1">Email</div>
 							<input
 								type="text"
 								name="email"
-								id=""
-								className="border outline-0 px-1 py-2 rounded w-70"
+								placeholder="Enter your email"
+								className="border border-brand-border outline-0 px-4 py-3 rounded-xl w-full text-brand-text-dark bg-white"
 							/>
 						</div>
-						<div className=" text-sm font-semibold ">
-							<div>CreatePassword</div>
+						<div className="text-sm font-semibold text-brand-text-dark mb-4">
+							<div className="mb-1">CreatePassword</div>
 							<input
 								type="password"
 								name="password"
-								id=""
-								className="border outline-0 px-1 py-2 rounded w-70"
+								placeholder="Create a password"
+								className="border border-brand-border outline-0 px-4 py-3 rounded-xl w-full text-brand-text-dark bg-white"
 							/>
 						</div>
 
-						<div className=" text-sm font-semibold  ">
-							<div>Role</div>
+						<div className="text-sm font-semibold text-brand-text-dark mb-4">
+							<div className="mb-1">Role</div>
 							<select
 								name="role"
-								className="border  py-2 rounded w-70"
+								className="border border-brand-border outline-0 px-4 py-3 rounded-xl w-full text-brand-text-dark bg-white"
 							>
-								<option value="user">User</option>
-								<option value="seller">Seller</option>
+								<option className='rounded-xl' value="user">User</option>
+								<option className='rounded-xl' value="seller">Seller</option>
 							</select>
 						</div>
-						<button className="border w-full mt-2 py-2 rounded-2xl bg-[#084a1c] text-amber-50 font-semibold hover:bg-[#1F4E36] ">
+						<button className="border w-full mt-2 py-3 rounded-2xl bg-brand-dark text-brand-text font-semibold hover:bg-[#1F4E36]">
 							Create account
 						</button>
 					</form>
-
-					<div className="font-semibold text-sm flex gap-2  justify-center ">
+					<div className="font-semibold text-sm flex gap-2 justify-center">
 						<div className="text-[#6E7269]">
 							Already have an account?
 						</div>
