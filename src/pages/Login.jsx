@@ -140,23 +140,50 @@
 
 // export default Login;
 
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../api/config';
 import { tenantConfig } from '../config/tenantConfig';
 
 const Login = () => {
+	const [emailError, setEmailError] = useState('');
+	const [passwordError, setPasswordError] = useState('');
+	const [apiError, setApiError] = useState('');
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	const navigate = useNavigate();
+
 	function submithandler(e) {
 		e.preventDefault();
+		setEmailError('');
+		setPasswordError('');
+		setApiError('');
 
 		const formData = new FormData(e.target);
+		const email = formData.get('email').trim();
+		if (!email) {
+			setEmailError('Email is required');
+			return;
+		}
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailRegex.test(email)) {
+			setEmailError('Please enter a valid email address');
+			return;
+		}
+		setEmailError('');
+
+		const password = formData.get('password');
+		if (!password) {
+			setPasswordError('Password is required');
+			return;
+		}
+		setPasswordError('');
 
 		const data = {
-			email: formData.get('email'),
-			password: formData.get('password'),
+			email,
+			password,
 		};
+		setIsSubmitting(true);
 
 		axios
 			.post(`${API_URL}/api/auth/login`, data, {
@@ -168,7 +195,28 @@ const Login = () => {
 				e.target.reset();
 			})
 			.catch((error) => {
-				console.log(error);
+				console.log(error.response?.data);
+				const status = error.response?.status;
+				const message = error.response?.data?.message;
+
+				if (status === 404) {
+					setEmailError(
+						message || 'No account found with this email',
+					);
+					return;
+				}
+
+				if (status === 401) {
+					setPasswordError(message || 'Incorrect password');
+					return;
+				}
+
+				setApiError(
+					message || 'Something went wrong. Please try again.',
+				);
+			})
+			.finally(() => {
+				setIsSubmitting(false);
 			});
 	}
 
@@ -229,6 +277,11 @@ const Login = () => {
 					</div>
 
 					<form onSubmit={submithandler}>
+						{apiError && (
+							<div className="text-red-500 text-sm mb-4 text-center">
+								{apiError}
+							</div>
+						)}
 						<div className="text-sm font-semibold text-brand-text-dark mb-4">
 							<div className="mb-1">Email</div>
 							<input
@@ -237,6 +290,11 @@ const Login = () => {
 								placeholder="name@example.com"
 								className="border border-brand-border outline-0 px-4 py-3 rounded-xl w-full text-brand-text-dark bg-white"
 							/>
+							{emailError && (
+								<div className="text-red-500 text-center  border-red-200 bg-red-50 rounded-xl text-xs mt-1">
+									{emailError}
+								</div>
+							)}
 						</div>
 
 						<div className="text-sm font-semibold text-brand-text-dark mb-2">
@@ -247,6 +305,11 @@ const Login = () => {
 								placeholder="Enter your password"
 								className="border border-brand-border outline-0 px-4 py-3 rounded-xl w-full text-brand-text-dark bg-white"
 							/>
+							{passwordError && (
+								<div className="text-red-500  text-center border-red-200 bg-red-50 rounded-xl text-xs mt-1">
+									{passwordError}
+								</div>
+							)}
 						</div>
 
 						<div className="flex items-center justify-between text-sm mb-4 mt-2">
@@ -262,8 +325,11 @@ const Login = () => {
 							</button>
 						</div>
 
-						<button className="border w-full py-3 rounded cursor-pointer bg-brand-primary text-brand-dark border-none font-semibold ">
-							Log in
+						<button
+							disabled={isSubmitting}
+							className="border w-full py-3 rounded cursor-pointer bg-brand-primary text-brand-dark border-none font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+						>
+							{isSubmitting ? 'Logging in...' : 'Log in'}
 						</button>
 					</form>
 
