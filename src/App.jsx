@@ -113,7 +113,7 @@ import Cart from './pages/Cart';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
-
+import Profile from './pages/Profile';
 const App = () => {
 	return (
 		<Routes>
@@ -150,6 +150,10 @@ const App = () => {
 				<Route
 					path="/cart"
 					element={<Cart />}
+				/>
+				<Route
+					path="/profile"
+					element={<Profile />}
 				/>
 			</Route>
 			<Route
