@@ -1,14 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ProductCard = ({ item, addtocart }) => {
+const ProductCard = ({ item}) => {
 	const navigate = useNavigate();
 	return (
 		<div
 			onClick={() => {
 				navigate(`/productdetail/${item.id}`);
 			}}
-			className=" font-['Zilla_Slab'] bg-brand-card border-brand-border   hover:border-brand-primary  rounded-xl overflow-hidden border-2 transition-transform duration-300 hover:scale-105"
+			className=" font-['Zilla_Slab'] bg-brand-card border-brand-border   hover:border-brand-primary  rounded-xl overflow-hidden cursor-pointer border-2 transition-transform duration-300 hover:scale-105"
 		>
 			<div>
 				<img
@@ -18,18 +18,7 @@ const ProductCard = ({ item, addtocart }) => {
 				/>
 			</div>
 
-			{/* <div className="h-64 w-full bg-blackr">
-				<img
-					src={item.image}
-					alt={item.name}
-					className=" object-cover "
-				/>
-			</div> */}
-
-			{/* <div className="font-semibold text-lg p-4">
-					<div> {item.name}</div>
-					<div className="text-brand-primary">$ {item.price}</div>
-				</div> */}
+			
 
 			<div className="font-semibold text-lg p-4">
 				<div>{item.name}</div>
@@ -39,9 +28,7 @@ const ProductCard = ({ item, addtocart }) => {
 
 				<div className="text-brand-primary">$ {item.price}</div>
 				<div className="flex items-center gap-2 mt-3">
-					{/* <div className="h-8 w-8 rounded-full border border-brand-primary flex items-center justify-center text-brand-primary font-bold">
-						{item.seller_name?.at(0)?.toUpperCase() || 'U'}
-					</div> */}
+					
 
 					<div className="h-8 w-8 rounded-full border border-brand-primary overflow-hidden flex items-center justify-center text-brand-primary font-bold">
 						{item.seller_avatar ? (
@@ -67,16 +54,7 @@ const ProductCard = ({ item, addtocart }) => {
 				</div>
 			</div>
 
-			<div className="px-4 pb-4">
-				<button
-					onClick={() => {
-						addtocart(item);
-					}}
-					className="w-full bg-brand-primary hover:bg-brand-hover text-brand-text-dark font-semibold py-2 rounded-lg"
-				>
-					Addtocart
-				</button>
-			</div>
+			
 		</div>
 	);
 };

@@ -14,14 +14,6 @@ const Products = () => {
 		});
 	}
 
-	function addtocart(item) {
-		axios.post(
-			`${API_URL}/api/cart/add`,
-			{ product_id: item.id },
-			{ withCredentials: true },
-		);
-	}
-
 	useEffect(() => {
 		getProducts();
 	}, []);
@@ -44,13 +36,12 @@ const Products = () => {
 						className="w-full max-w-md rounded-xl border border-brand-border bg-brand-card px-4 py-3 text-brand-text outline-none focus:border-brand-primary"
 					/>
 				</div>
-				<div className='flex justify-center'>
-					<div  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5  p-5  ">
+				<div className="flex justify-center ">
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5  p-5  ">
 						{filteredProducts.map((item) => {
 							return (
 								<ProductCard
 									item={item}
-									addtocart={addtocart}
 									key={item._id || item.id}
 								/>
 							);
