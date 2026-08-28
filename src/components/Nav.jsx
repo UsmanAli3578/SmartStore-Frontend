@@ -93,6 +93,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { tenantConfig } from '../config/tenantConfig';
 import { ShoppingCart } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 import { API_URL } from '../api/config';
 const Nav = () => {
@@ -100,6 +101,7 @@ const Nav = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [user, setUser] = useState(null);
 	const [isProfileOpen, setIsProfileOpen] = useState(false);
+	const { quantity } = useCart();
 
 	useEffect(() => {
 		axios
@@ -178,7 +180,8 @@ const Nav = () => {
 						}}
 						className="group cursor-pointer"
 					>
-						<div className="h-10 w-10 flex items-center justify-center rounded-full border border-brand-border text-brand-text transition-colors duration-200 group-hover:border-brand-primary group-hover:text-brand-primary group-hover:bg-brand-primary/10">
+						<div className="h-10 w-10 flex flex-col items-center justify-center rounded-full border border-brand-border text-brand-text transition-colors duration-200 group-hover:border-brand-primary group-hover:text-brand-primary group-hover:bg-brand-primary/10">
+							<div className="text-xs ml-4  h-3 w-3 rounded-4xl bg-[#E7000B] flex justify-center items-center">{quantity}</div>
 							<ShoppingCart size={20} />
 						</div>
 					</button>

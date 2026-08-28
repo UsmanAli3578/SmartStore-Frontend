@@ -114,6 +114,7 @@ import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
 import Profile from './pages/Profile';
+import ProductDetail from './pages/ProductDetail';
 const App = () => {
 	return (
 		<Routes>
@@ -152,10 +153,16 @@ const App = () => {
 					element={<Cart />}
 				/>
 				<Route
+					path="/productdetail/:id"
+					element={<ProductDetail />}
+				/>
+
+				<Route
 					path="/profile"
 					element={<Profile />}
 				/>
 			</Route>
+
 			<Route
 				path="*"
 				element={<NotFound />}

@@ -1,15 +1,30 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ item, addtocart }) => {
+	const navigate = useNavigate();
 	return (
-		<div className=" font-['Zilla_Slab'] bg-brand-card border-brand-border rounded-xl overflow-hidden border">
+		<div
+			onClick={() => {
+				navigate(`/productdetail/${item.id}`);
+			}}
+			className=" font-['Zilla_Slab'] bg-brand-card border-brand-border   hover:border-brand-primary  rounded-xl overflow-hidden border-2 transition-transform duration-300 hover:scale-105"
+		>
 			<div>
 				<img
-					className="w-full h-56 object-cover bg-brand-dark "
+					className="w-full h-60 object-cover	 bg-brand-dark "
 					src={item.image}
 					alt={item.name}
 				/>
 			</div>
+
+			{/* <div className="h-64 w-full bg-blackr">
+				<img
+					src={item.image}
+					alt={item.name}
+					className=" object-cover "
+				/>
+			</div> */}
 
 			{/* <div className="font-semibold text-lg p-4">
 					<div> {item.name}</div>
@@ -18,9 +33,11 @@ const ProductCard = ({ item, addtocart }) => {
 
 			<div className="font-semibold text-lg p-4">
 				<div>{item.name}</div>
+				<p className="mt-2 text-sm text-brand-text/70 line-clamp-2 break-all">
+					{item.description}
+				</p>
 
 				<div className="text-brand-primary">$ {item.price}</div>
-
 				<div className="flex items-center gap-2 mt-3">
 					{/* <div className="h-8 w-8 rounded-full border border-brand-primary flex items-center justify-center text-brand-primary font-bold">
 						{item.seller_name?.at(0)?.toUpperCase() || 'U'}

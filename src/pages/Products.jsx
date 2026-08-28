@@ -5,6 +5,7 @@ import Nav from '../components/Nav';
 import ProductCard from '../components/ProductCard';
 const Products = () => {
 	const [allProducts, setAllProducts] = useState([]);
+	const [search, setSearch] = useState('');
 
 	function getProducts() {
 		axios.get(`${API_URL}/api/product/allproducts`).then((res) => {
@@ -24,75 +25,38 @@ const Products = () => {
 	useEffect(() => {
 		getProducts();
 	}, []);
-
+	const filteredProducts = allProducts.filter((item) =>
+		item.name.toLowerCase().includes(search.toLowerCase()),
+	);
 	return (
 		<div>
 			<Nav></Nav>
-
-			{/* <div className=' grid grid-cols-3 gap-2  '>
-				{allProducts.map((item) => {
-					return (
-						<div className='border'>
-							<div>{item.name}</div>
-							<div>
-								<img
-									src={item.image}
-									alt=""
+			<div className=" items-center justify-center ">
+				<div className="font-semibold text-center font-['Zilla_Slab'] px-5 py-2 text-2xl ">
+					Products
+				</div>
+				<div className="px-5 py-4 flex justify-center ">
+					<input
+						type="text"
+						placeholder="Search products..."
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
+						className="w-full max-w-md rounded-xl border border-brand-border bg-brand-card px-4 py-3 text-brand-text outline-none focus:border-brand-primary"
+					/>
+				</div>
+				<div className='flex justify-center'>
+					<div  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5  p-5  ">
+						{filteredProducts.map((item) => {
+							return (
+								<ProductCard
+									item={item}
+									addtocart={addtocart}
+									key={item._id || item.id}
 								/>
-							</div>
-						</div>
-					);
-				})}
-			</div> */}
-
-			{/* <div className="grid grid-cols-3 gap-2 p-2">
-				{allProducts.map((item) => {
-					return (
-						<div
-							className="border p-2 border-[#a7a2a2] rounded-2xl"
-							key={item._id || item.id}
-						>
-							<div>
-								<img
-									src={item.image}
-									alt={item.name || ''}
-									className="h-60 w-full object-cover rounded-2xl"
-								/>
-							</div>
-							<div>
-								<span className="font-semibold">Title: </span>
-								{item.name}
-							</div>
-							<div>
-								<span className="font-semibold">Price: </span>
-								{item.price}
-							</div>
-
-							<div>
-								<button
-									onClick={() => {
-										addtocart(item);
-									}}
-									className="w-full rounded-full bg-gray-800 py-2 text-sm font-medium text-white hover:bg-gray-900"
-								>
-									Add to Cart
-								</button>
-							</div>
-						</div>
-					);
-				})}
-			</div> */}
-			<div className="font-semibold font-['Zilla_Slab'] px-5 py-2 text-2xl ">Products</div>
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-				{allProducts.map((item) => {
-					return (
-						<ProductCard
-							item={item}
-							addtocart={addtocart}
-							key={item._id || item.id}
-						/>
-					);
-				})}
+							);
+						})}
+					</div>
+				</div>
 			</div>
 		</div>
 	);
