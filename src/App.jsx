@@ -115,6 +115,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PublicRoute from './components/PublicRoute';
 import Profile from './pages/Profile';
 import ProductDetail from './pages/ProductDetail';
+import MyOrders from './pages/MyOrders';
+import SellerOrders from './pages/SellerOrders';
 const App = () => {
 	return (
 		<Routes>
@@ -155,6 +157,14 @@ const App = () => {
 				<Route
 					path="/productdetail/:id"
 					element={<ProductDetail />}
+				/>
+				<Route
+					path="/my-orders"
+					element={<MyOrders />}
+				/>
+				<Route
+					path="/seller-orders"
+					element={<SellerOrders />}
 				/>
 
 				<Route

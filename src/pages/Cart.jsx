@@ -463,6 +463,23 @@ const Cart = () => {
 			});
 	}
 
+	const checkout = () => {
+		axios
+			.post(
+				`${API_URL}/api/order/checkout`,
+				{},
+				{
+					withCredentials: true,
+				},
+			)
+			.then((res) => {
+				console.log(res.data);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
 	function increaseQuantity(item) {
 		const newQuantity = item.quantity + 1;
 
@@ -630,7 +647,10 @@ const Cart = () => {
 							</span>
 						</div>
 
-						<button className="mt-4 w-full rounded-full bg-brand-primary py-3 font-semibold text-brand-text-dark hover:bg-brand-hover">
+						<button
+							onClick={checkout}
+							className="mt-4 w-full rounded-full bg-brand-primary py-3 font-semibold text-brand-text-dark hover:bg-brand-hover cursor-pointer"
+						>
 							Checkout
 						</button>
 					</div>
