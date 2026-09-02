@@ -117,67 +117,83 @@ import Profile from './pages/Profile';
 import ProductDetail from './pages/ProductDetail';
 import MyOrders from './pages/MyOrders';
 import SellerOrders from './pages/SellerOrders';
+import { Toaster } from 'react-hot-toast';
 const App = () => {
 	return (
-		<Routes>
-			{/* Public Routes */}
-			<Route element={<PublicRoute />}>
-				<Route
-					path="/"
-					element={<Registration />}
-				/>
-				<Route
-					path="/login"
-					element={<Login />}
-				/>
-			</Route>
-
-			{/* Protected Routes */}
-			<Route element={<ProtectedRoute />}>
-				<Route
-					path="/products"
-					element={<Products />}
-				/>
-				<Route
-					path="/createproducts"
-					element={<CreateProducts />}
-				/>
-				<Route
-					path="/userproducts"
-					element={<UsersProducts />}
-				/>
-				<Route
-					path="/edit/:id"
-					element={<Edit />}
-				/>
-				<Route
-					path="/cart"
-					element={<Cart />}
-				/>
-				<Route
-					path="/productdetail/:id"
-					element={<ProductDetail />}
-				/>
-				<Route
-					path="/my-orders"
-					element={<MyOrders />}
-				/>
-				<Route
-					path="/seller-orders"
-					element={<SellerOrders />}
-				/>
-
-				<Route
-					path="/profile"
-					element={<Profile />}
-				/>
-			</Route>
-
-			<Route
-				path="*"
-				element={<NotFound />}
+		<>
+			<Toaster
+				position="top-right"
+				toastOptions={{
+					style: {
+						background: 'var(--color-bg-card)',
+						color: 'var(--color-text-main)',
+						border: '1px solid var(--color-primary)',
+						borderRadius: '12px',
+						padding: '12px 18px',
+						fontFamily: "'Zilla Slab', serif",
+					},
+				}}
 			/>
-		</Routes>
+			<Routes>
+				{/* Public Routes */}
+				<Route element={<PublicRoute />}>
+					<Route
+						path="/"
+						element={<Registration />}
+					/>
+					<Route
+						path="/login"
+						element={<Login />}
+					/>
+				</Route>
+
+				{/* Protected Routes */}
+				<Route element={<ProtectedRoute />}>
+					<Route
+						path="/products"
+						element={<Products />}
+					/>
+					<Route
+						path="/createproducts"
+						element={<CreateProducts />}
+					/>
+					<Route
+						path="/userproducts"
+						element={<UsersProducts />}
+					/>
+					<Route
+						path="/edit/:id"
+						element={<Edit />}
+					/>
+					<Route
+						path="/cart"
+						element={<Cart />}
+					/>
+					<Route
+						path="/productdetail/:id"
+						element={<ProductDetail />}
+					/>
+					<Route
+						path="/my-orders"
+						element={<MyOrders />}
+					/>
+					<Route
+						path="/seller-orders"
+						element={<SellerOrders />}
+					/>
+
+					<Route
+						path="/profile"
+						element={<Profile />}
+					/>
+				</Route>
+
+				<Route
+					path="*"
+					element={<NotFound />}
+				/>
+			</Routes>
+		</>
 	);
 };
 
