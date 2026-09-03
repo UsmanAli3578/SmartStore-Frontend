@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { useCart } from '../context/CartContext';
 import {
 	PaymentElement,
 	useStripe,
@@ -11,6 +11,7 @@ const PaymentForm = () => {
 	const stripe = useStripe();
 	const elements = useElements();
 	const navigate = useNavigate();
+	const { setCartItems } = useCart();
 
 	const [loading, setLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
@@ -38,6 +39,7 @@ const PaymentForm = () => {
 		}
 
 		console.log('Payment successful');
+		setCartItems([]);
 
 		// Webhook ko order create karne ka thora time dein
 		setTimeout(() => {
@@ -53,9 +55,7 @@ const PaymentForm = () => {
 			<PaymentElement />
 
 			{errorMessage && (
-				<p className="mt-3 text-red-500">
-					{errorMessage}
-				</p>
+				<p className="mt-3 text-red-500">{errorMessage}</p>
 			)}
 
 			<button
@@ -70,4 +70,3 @@ const PaymentForm = () => {
 };
 
 export default PaymentForm;
-
